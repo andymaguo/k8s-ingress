@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: gitlab
+  namespace: gitlab
+  labels:
+    name: gitlab
+spec:
+  rules:
+  - host: git.dataops.accenture.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: gitlab-nodeport
+          servicePort: 80
+  - host: git-ssh.dataops.accenture.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: gitlab-nodeport
+          servicePort: 1022

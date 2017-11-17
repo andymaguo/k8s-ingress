@@ -1,0 +1,19 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: registry-ui
+  namespace: default
+  labels:
+    name: registry-ui
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    ingress.kubernetes.io/proxy-body-size: "0"
+spec:
+  rules:
+  - host: registry-ui.dataops.accenture.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: registry-ui
+          servicePort: 8080
